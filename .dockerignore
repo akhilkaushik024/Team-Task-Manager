@@ -1,0 +1,19 @@
+# Git
+.git
+.gitignore
+
+# Node
+**/node_modules
+**/dist
+**/.angular
+**/npm-debug.log*
+
+# .NET
+**/bin
+**/obj
+**/.vs
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
