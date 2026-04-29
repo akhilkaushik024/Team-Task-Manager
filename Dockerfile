@@ -20,8 +20,8 @@ WORKDIR /app
 COPY --from=backend-build /app/backend/out .
 COPY --from=frontend-build /app/frontend/dist/frontend/browser ./wwwroot
 
-# Expose port (Railway uses PORT env var)
-ENV ASPNETCORE_URLS=http://+:8080
-EXPOSE 80
+# Expose port (Railway provides PORT env var)
+ENV ASPNETCORE_HTTP_PORTS=8080
+EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "Backend.dll"]
