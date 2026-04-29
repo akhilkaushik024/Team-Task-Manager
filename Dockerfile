@@ -1,8 +1,10 @@
 # Stage 1: Build Frontend
 FROM node:20-slim AS frontend-build
 WORKDIR /app/frontend
+# Install pnpm for memory efficiency
+RUN npm install -g pnpm
 COPY Frontend/package*.json ./
-RUN npm install --no-audit --no-fund --loglevel=error
+RUN pnpm install --prod=false
 COPY Frontend/ ./
 # Increase memory limit for the Angular build itself
 RUN node --max-old-space-size=1024 ./node_modules/@angular/cli/bin/ng build --configuration production
