@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="page-header">
+    <div>
+      <h1 class="title">Dashboard</h1>
+      <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem;">Welcome back — here's your project overview</p>
+    </div>
+  </div>
+
+  <div *ngIf="!stats" style="text-align: center; padding: 4rem; color: var(--text-muted);">
+    <div style="font-size: 2rem; margin-bottom: 0.5rem; animation: pulse 1.5s infinite;">⏳</div>
+    Loading stats...
+  </div>
+
+  <div class="grid" *ngIf="stats">
+    <!-- Total Tasks -->
+    <div class="stat-card" style="--accent-color: var(--primary);">
+      <div class="stat-icon" style="background: var(--primary-glow); color: var(--primary);">📋</div>
+      <div class="stat-value" style="color: var(--primary);">{{ stats.totalTasks }}</div>
+      <div class="stat-label">Total Tasks</div>
+    </div>
+
+    <!-- Completed -->
+    <div class="stat-card" style="--accent-color: var(--success);">
+      <div class="stat-icon" style="background: rgba(46, 170, 123, 0.15); color: var(--success);">✅</div>
+      <div class="stat-value" style="color: var(--success);">{{ stats.completed }}</div>
+      <div class="stat-label">Completed</div>
+    </div>
+
+    <!-- In Progress -->
+    <div class="stat-card" style="--accent-color: var(--warning);">
+      <div class="stat-icon" style="background: rgba(245, 166, 35, 0.15); color: var(--warning);">🔄</div>
+      <div class="stat-value" style="color: var(--warning);">{{ stats.inProgress }}</div>
+      <div class="stat-label">In Progress</div>
+    </div>
+
+    <!-- To Do -->
+    <div class="stat-card" style="--accent-color: var(--text-muted);">
+      <div class="stat-icon" style="background: rgba(66, 82, 110, 0.15); color: var(--text-muted);">📌</div>
+      <div class="stat-value" style="color: var(--text-muted);">{{ stats.todo }}</div>
+      <div class="stat-label">To Do</div>
+    </div>
+
+    <!-- Overdue -->
+    <div class="stat-card" style="--accent-color: var(--danger);">
+      <div class="stat-icon" style="background: rgba(224, 30, 90, 0.15); color: var(--danger);">⚠️</div>
+      <div class="stat-value" style="color: var(--danger);">{{ stats.overdue }}</div>
+      <div class="stat-label">Overdue</div>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="card" style="margin-top: 1.5rem;" *ngIf="stats && stats.totalTasks > 0">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+      <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-subtle);">Overall Progress</span>
+      <span style="font-size: 0.875rem; font-weight: 700; color: var(--success);">{{ getCompletionRate() }}%</span>
+    </div>
+    <div style="background: var(--surface-hover); border-radius: 999px; height: 8px; overflow: hidden; border: 1px solid var(--border);">
+      <div [style.width]="getCompletionRate() + '%'" style="height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 999px; transition: width 1s ease;"></div>
+    </div>
+    <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.75rem;">{{ stats.completed }} of {{ stats.totalTasks }} tasks completed</p>
+  </div>
+</div>

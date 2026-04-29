@@ -1,0 +1,17 @@
+# Node
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.sln.docstates
+.vs/
+
+# Misc
+.DS_Store
+.env

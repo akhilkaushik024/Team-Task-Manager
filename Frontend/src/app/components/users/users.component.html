@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="page-header">
+    <div>
+      <h1 class="title">Manage Users</h1>
+      <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem;">{{ users.length }} registered user{{ users.length !== 1 ? 's' : '' }}</p>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!isAdmin">
+    <div class="empty-state-icon">🔒</div>
+    <h3>Access Denied</h3>
+    <p>This page is only available to administrators</p>
+  </div>
+
+  <div class="table-wrap" *ngIf="isAdmin">
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Role</th>
+          <th style="text-align: right;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of users">
+          <td>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <div style="width: 34px; height: 34px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; color: white; flex-shrink: 0; box-shadow: 0 2px 4px rgba(99, 91, 255, 0.2);">
+                {{ u.name.charAt(0).toUpperCase() }}
+              </div>
+              <span style="font-weight: 500;">{{ u.name }}</span>
+            </div>
+          </td>
+          <td style="color: var(--text-muted);">{{ u.email }}</td>
+          <td>
+            <span class="badge badge-approved" *ngIf="u.isApproved">✓ Approved</span>
+            <span class="badge badge-pending" *ngIf="!u.isApproved">⏳ Pending</span>
+          </td>
+          <td>
+            <span class="badge badge-admin" *ngIf="u.role === 'Admin'">Admin</span>
+            <span *ngIf="u.role !== 'Admin'" style="color: var(--text-muted); font-size: 0.875rem;">Member</span>
+          </td>
+          <td style="text-align: right;">
+            <div style="display: flex; gap: 0.5rem; justify-content: flex-end; align-items: center;">
+              <select (change)="updateRole(u.id, $event)" [value]="u.role"
+                style="padding: 0.35rem 0.6rem; border-radius: 6px; background: var(--surface); color: var(--text); border: 1px solid var(--border); font-family: inherit; font-size: 0.8rem; cursor: pointer;">
+                <option value="Admin">Admin</option>
+                <option value="Member">Member</option>
+              </select>
+              <button class="btn btn-success" *ngIf="!u.isApproved" (click)="approveUser(u.id)" style="padding: 0.35rem 0.9rem; font-size: 0.8rem;">
+                Approve
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="empty-state" *ngIf="users.length === 0">
+      <div class="empty-state-icon">👥</div>
+      <h3>No users yet</h3>
+      <p>Users who register will appear here</p>
+    </div>
+  </div>
+</div>
