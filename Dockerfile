@@ -9,16 +9,16 @@ RUN node --max-old-space-size=1024 ./node_modules/@angular/cli/bin/ng build --co
 
 # Stage 2: Build Backend
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS backend-build
-WORKDIR /app/backend
-COPY Backend/*.csproj ./
-RUN dotnet restore
-COPY Backend/ ./
-RUN dotnet publish -c Release -o out
+WORKDIR /app
+COPY Backend/Backend.csproj Backend/
+RUN dotnet restore Backend/Backend.csproj
+COPY Backend/ Backend/
+RUN dotnet publish Backend/Backend.csproj -c Release -o out
 
 # Stage 3: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=backend-build /app/backend/out .
+COPY --from=backend-build /app/out .
 COPY --from=frontend-build /app/frontend/dist/frontend/browser ./wwwroot
 
 # Expose port (Railway provides PORT env var)
