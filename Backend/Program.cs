@@ -52,10 +52,17 @@ if (app.Environment.IsDevelopment())
 }
 
 // Initialize Database
-using (var scope = app.Services.CreateScope())
+try 
 {
-    var couchDbService = scope.ServiceProvider.GetRequiredService<CouchDbService>();
-    await couchDbService.EnsureDatabaseExistsAsync();
+    using (var scope = app.Services.CreateScope())
+    {
+        var couchDbService = scope.ServiceProvider.GetRequiredService<CouchDbService>();
+        await couchDbService.EnsureDatabaseExistsAsync();
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"WARNING: Could not connect to CouchDB. App will start but database features might fail: {ex.Message}");
 }
 
 // HTTPS redirection is disabled to simplify local dev unless using it
