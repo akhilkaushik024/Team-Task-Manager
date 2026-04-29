@@ -1,10 +1,11 @@
 # Stage 1: Build Frontend
-FROM node:20-alpine AS frontend-build
+FROM node:20-slim AS frontend-build
 WORKDIR /app/frontend
 COPY Frontend/package*.json ./
-RUN npm ci --prefer-offline --no-audit --no-fund
+RUN npm install --no-audit --no-fund --loglevel=error
 COPY Frontend/ ./
-RUN npm run build -- --configuration production
+# Increase memory limit for the Angular build itself
+RUN node --max-old-space-size=1024 ./node_modules/@angular/cli/bin/ng build --configuration production
 
 # Stage 2: Build Backend
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS backend-build
