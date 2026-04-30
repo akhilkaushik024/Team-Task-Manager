@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+nav {
+  transition: box-shadow 0.3s ease;
+}
+
+nav:hover {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile hamburger placeholder */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 1rem !important;
+  }
+}

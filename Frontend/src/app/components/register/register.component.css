@@ -1,0 +1,103 @@
+:host {
+  display: block;
+  min-height: calc(100vh - 62px);
+}
+
+.auth-card {
+  animation: cardAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Logo icon pulse */
+.auth-logo-icon {
+  animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% { box-shadow: 0 10px 24px rgba(99,102,241,0.35); }
+  50% { box-shadow: 0 10px 32px rgba(99,102,241,0.5), 0 0 0 6px rgba(99,102,241,0.08); }
+}
+
+/* Button ripple */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Input animations */
+.input-group input:focus {
+  animation: inputGlow 0.3s ease;
+}
+
+@keyframes inputGlow {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+  50% { box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.15); }
+  100% { box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); }
+}
+
+/* Success message slide */
+.alert-success {
+  animation: alertSlide 0.3s ease;
+}
+
+.alert-error {
+  animation: alertSlide 0.3s ease;
+}
+
+@keyframes alertSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-footer a {
+  position: relative;
+}
+
+.auth-footer a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--primary-hover);
+  transition: width 0.3s;
+}
+
+.auth-footer a:hover::after {
+  width: 100%;
+}

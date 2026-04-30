@@ -1,7 +1,7 @@
-<nav style="background: rgba(6,11,24,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 1.5rem; height: 62px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 30px rgba(0,0,0,0.3);">
+<nav style="background: rgba(15,23,41,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 1.5rem; height: 62px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 24px rgba(0,0,0,0.2);">
   <a routerLink="/dashboard" style="display: flex; align-items: center; gap: 0.65rem; text-decoration: none;">
-    <span style="width: 32px; height: 32px; background: linear-gradient(135deg, #6366F1, #4F46E5); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: white; box-shadow: 0 4px 12px rgba(99,102,241,0.4);">⚡</span>
-    <span style="font-weight: 800; font-size: 1.05rem; color: #F1F5F9; letter-spacing: -0.02em;">TeamTask</span>
+    <span style="width: 34px; height: 34px; background: linear-gradient(135deg, #6366F1, #8B5CF6); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: white; box-shadow: 0 4px 14px rgba(99,102,241,0.35);">⚡</span>
+    <span style="font-weight: 800; font-size: 1.1rem; color: #E2E8F0; letter-spacing: -0.02em;">TeamTask</span>
   </a>
 
   <div style="display: flex; align-items: center; gap: 0.25rem;" *ngIf="currentUser$ | async as user">
@@ -10,11 +10,11 @@
     <a routerLink="/tasks" routerLinkActive="nav-active" class="nav-link">Tasks</a>
     <a *ngIf="user.role === 'Admin'" routerLink="/users" routerLinkActive="nav-active" class="nav-link">Users</a>
 
-    <div style="width: 1px; height: 20px; background: rgba(255,255,255,0.1); margin: 0 0.75rem;"></div>
+    <div style="width: 1px; height: 22px; background: rgba(255,255,255,0.08); margin: 0 0.75rem;"></div>
 
     <div style="display: flex; align-items: center; gap: 0.75rem;">
       <div style="display: flex; align-items: center; gap: 0.5rem;">
-        <div style="width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, #6366F1, #06B6D4); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: white; box-shadow: 0 2px 8px rgba(99,102,241,0.3);">
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #6366F1, #8B5CF6); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: white; box-shadow: 0 2px 8px rgba(99,102,241,0.25);">
           {{ user.name.charAt(0).toUpperCase() }}
         </div>
         <span style="font-size: 0.85rem; font-weight: 500; color: #94A3B8;">

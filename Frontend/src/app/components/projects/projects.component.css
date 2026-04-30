@@ -1,0 +1,70 @@
+:host {
+  display: block;
+  animation: pageEnter 0.4s ease;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Project cards stagger */
+.project-card {
+  animation: cardSlideIn 0.35s ease both;
+}
+
+.project-card:nth-child(1) { animation-delay: 0s; }
+.project-card:nth-child(2) { animation-delay: 0.05s; }
+.project-card:nth-child(3) { animation-delay: 0.1s; }
+.project-card:nth-child(4) { animation-delay: 0.15s; }
+.project-card:nth-child(5) { animation-delay: 0.2s; }
+.project-card:nth-child(6) { animation-delay: 0.25s; }
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Project icon hover */
+.project-card:hover .project-icon {
+  transform: scale(1.1) rotate(5deg);
+  transition: transform 0.3s ease;
+}
+
+/* Gradient border glow on hover */
+.project-card:hover::before {
+  opacity: 1;
+  height: 3px;
+}
+
+/* Delete button */
+.project-footer .btn-danger {
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.project-footer .btn-danger:hover {
+  opacity: 1;
+}
+
+/* Form panel */
+.form-panel {
+  animation: formSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes formSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scaleY(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
