@@ -61,7 +61,7 @@ public class CouchDbService
         else
         {
             var errStr = await response.Content.ReadAsStringAsync();
-            _logger.LogError($"CouchDB Create Error: {response.StatusCode} - {errStr} \n Payload: {json}");
+            _logger.LogError($"CouchDB Create Error: {response.StatusCode} - {errStr} \n URL: {_httpClient.BaseAddress}{_databaseName}");
         }
         return null;
     }
@@ -102,7 +102,8 @@ public class CouchDbService
         }
         else
         {
-            _logger.LogError($"CouchDB Find Error: {response.StatusCode} - {resStr} \n Payload: {json}");
+            var errStr = await response.Content.ReadAsStringAsync();
+            _logger.LogError($"CouchDB Find Error: {response.StatusCode} - {errStr} \n URL: {_httpClient.BaseAddress}{_databaseName}/_find");
         }
         return list;
     }
