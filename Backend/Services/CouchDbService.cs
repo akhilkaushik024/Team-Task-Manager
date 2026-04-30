@@ -27,6 +27,17 @@ public class CouchDbService
 
     public async Task EnsureDatabaseExistsAsync()
     {
+        var systemDbs = new[] { "_users", "_replicator", "_global_changes" };
+        foreach (var db in systemDbs)
+        {
+            var res = await _httpClient.GetAsync($"/{db}");
+            if (!res.IsSuccessStatusCode)
+            {
+                await _httpClient.PutAsync($"/{db}", null);
+                _logger.LogInformation($"Created system database: {db}");
+            }
+        }
+
         var response = await _httpClient.GetAsync($"/{_databaseName}");
         if (!response.IsSuccessStatusCode)
         {
