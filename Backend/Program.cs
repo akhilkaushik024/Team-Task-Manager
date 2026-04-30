@@ -5,6 +5,21 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Override CouchDB settings from environment variables (for Railway deployment)
+var couchUrl = Environment.GetEnvironmentVariable("COUCHDB_URL");
+var couchUser = Environment.GetEnvironmentVariable("COUCHDB_USERNAME");
+var couchPass = Environment.GetEnvironmentVariable("COUCHDB_PASSWORD");
+var couchDb = Environment.GetEnvironmentVariable("COUCHDB_DATABASE");
+
+if (!string.IsNullOrEmpty(couchUrl))
+    builder.Configuration["CouchDB:Url"] = couchUrl;
+if (!string.IsNullOrEmpty(couchUser))
+    builder.Configuration["CouchDB:Username"] = couchUser;
+if (!string.IsNullOrEmpty(couchPass))
+    builder.Configuration["CouchDB:Password"] = couchPass;
+if (!string.IsNullOrEmpty(couchDb))
+    builder.Configuration["CouchDB:DatabaseName"] = couchDb;
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
