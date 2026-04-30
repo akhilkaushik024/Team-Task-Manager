@@ -250,6 +250,29 @@ Team-Task-Manager/
 
 ---
 
+## 🔑 Demo Credentials
+
+> **Use these credentials to test the live application with full Admin access:**
+
+| Role | Email | Password |
+|------|-------|----------|
+| 🛡️ **Admin** | `itar@test.com` | `itar123` |
+
+### What can Admin do?
+- ✅ Approve new user registrations
+- ✅ Create & delete **Projects**
+- ✅ Create, assign & delete **Tasks**
+- ✅ Change user roles (Admin / Member)
+- ✅ View all users in the **Users** panel
+
+### Testing as a Member
+1. Click **"Create one"** on the login page to register a new account
+2. Log in as **Admin** (above credentials) and go to **Users** tab
+3. Click **Approve** next to the new user
+4. Log out and sign in with the new Member account
+
+---
+
 ## 🌐 Live Deployment
 
 | Service | URL |
