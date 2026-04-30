@@ -256,7 +256,7 @@ Team-Task-Manager/
 
 | Role | Email | Password |
 |------|-------|----------|
-| 🛡️ **Admin** | `itar@test.com` | `itar123` |
+| 🛡️ **Admin** | `itar@test.com` | `123456` |
 
 ### What can Admin do?
 - ✅ Approve new user registrations
